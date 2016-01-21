@@ -21,6 +21,8 @@
   <link rel="import" href="bower_components/paper-toolbar/paper-toolbar.html">
   <link rel="import" href="bower_components/paper-card/paper-card.html">
 
+  <!-- App elements -->
+  <link rel="import" href="elements/sign-in-up.html">
 </head>
 
 <body class="fullbleed vertical layout">
@@ -39,13 +41,8 @@
         <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
         <div>Title</div>
       </paper-toolbar>
-      <div class="flex" style="padding:3em">
-        <paper-card heading="Card Title">
-          <div class="card-content">Some content</div>
-          <div class="card-actions">
-            <paper-button>Some action</paper-button>
-          </div>
-        </paper-card>
+      <div class="flex" style="padding:1em">
+        <sign-in-up></sign-in-up>
       </div>
     </paper-header-panel>
 

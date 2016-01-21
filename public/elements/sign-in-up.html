@@ -1,0 +1,86 @@
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input-container.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<dom-module is="sign-in-up">
+  <template>
+    <style>
+      iron-pages {
+        border: 1px solid #ccc;
+        border-top: none;
+        padding: 8px;
+      }
+
+      paper-tabs, paper-toolbar {
+        background-color: var(--paper-blue-900);
+        color: #fff;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      paper-toolbar paper-tabs {
+        box-shadow: none;
+      }
+
+      paper-tabs[noink][no-bar] paper-tab.iron-selected {
+        color: #ffff8d;
+      }
+
+      paper-tabs[align-bottom] {
+        box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.15);
+      }
+
+      paper-tabs a {
+        color: #fff;
+      }
+
+      h3 {
+        font-size: 16px;
+        font-weight: 400;
+        padding-top: 20px;
+      }
+    </style>
+    <paper-tabs selected="{{selected}}">
+      <paper-tab>Sign in</paper-tab>
+      <paper-tab>Sign up</paper-tab>
+    </paper-tabs>
+    <iron-pages selected="{{selected}}">
+      <div>
+        <paper-input label="Username" value={{username}}></paper-input>
+        <paper-input label="Password" value={{passwd}}></paper-input>
+        <paper-button on-click="dologin">Login</paper-button>
+      </div>
+      <div>CONTENT TWO</div>
+    </iron-pages>
+  </template>
+  <script>
+    Polymer({
+      is: 'sign-in-up',
+      properties: {
+        selected: {
+          type: Number,
+          value: 0
+        }
+      },
+      dologin: function() {
+        console.log("login");
+        Meteor.loginWithPassword(
+          this.username, this.passwd, function(error, result) {
+            if (error) {
+              this.error = 'Login error - ' + error;
+              console.log('Login error - ' + error);
+            } else {
+              console.log("logged in");
+            }
+          })
+
+        // Clear form
+        this.username = "";
+        this.passwd = "";
+      }
+    });
+  </script>
+</dom-module>
