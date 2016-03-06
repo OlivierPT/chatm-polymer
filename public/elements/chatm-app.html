@@ -5,6 +5,9 @@
 <link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 
+<!-- App Elements -->
+<link rel="import" href="sign-in-up.html">
+
 <dom-module is="chatm-app">
   <template>
 
@@ -18,6 +21,7 @@
 
         <!-- Drawer Content -->
 
+
       </paper-header-panel>
 
 
@@ -26,9 +30,9 @@
           <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
           <div>ChatM Polymer</div>
         </paper-toolbar>
-        <div class="flex" style="padding:1em">
 
-          SignUpIn
+        <div class="flex" style="padding:1em">
+          <sign-in-up></sign-in-up>
         </div>
       </paper-header-panel>
 

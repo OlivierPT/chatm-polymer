@@ -1,16 +1,22 @@
+<!-- Paper elements -->
+<link rel="import" href="../bower_components/paper-menu/paper-menu.html">
 
+<!-- Meteor Elements -->
+<link rel="import" href="../bower_components/meteor-elements/meteor-elements.html">
 
 <dom-module is="channels-list">
   <template>
 
-    <meteor-collection name="Channels">
-      <meteor-query query='{}' enable="{{subready}}" data="{{datas}}" options='{}'></meteor-query>
+    <meteor-subscribe name="channels" args="[]" isready="{{_subready}}"></meteor-subscribe>
+
+    <meteor-collection id="_channelsCollection" name="channels">
+      <meteor-query options="{{options}}" data="{{items}}" enable="{{_subready}}"></meteor-query>
     </meteor-collection>
 
     <!-- Drawer Content -->
     <paper-menu>
 
-      <template is="dom-repeat" items="{{datas}}">
+      <template id="channelsList" is="dom-repeat" items="[[items]]">
         <a href="/channels/{{item._id}}">
           <iron-icon icon="info"></iron-icon>
           <span>{{item.label}}</span>
@@ -23,10 +29,8 @@
       <paper-input label="New channel" value={{channelLabel}}></paper-input>
     </form>
 
-
-  </paper-header-panel>
-
   </template>
+  
   <script>
     Polymer({
       is: 'channels-list',
@@ -36,8 +40,8 @@
           value: 0
         }
       },
-      created: function() {
-        Meteor.subscribe("allchannels");
+      ready: function() {
+        this.options = {};
       },
       createChannel: function() {
         console.log("create channel");

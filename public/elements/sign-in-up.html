@@ -1,6 +1,15 @@
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+
+<!-- Paper components -->
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 
 <dom-module is="sign-in-up">
+
   <template>
+
     <style>
       iron-pages {
         border: 1px solid #ccc;
@@ -54,7 +63,9 @@
         <paper-button on-click="signUp">Sign up</paper-button>
       </div>
     </iron-pages>
+
   </template>
+
   <script>
     Polymer({
       is: 'sign-in-up',
