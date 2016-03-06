@@ -1,0 +1,8 @@
+{
+  "directory" : ".polymer",
+  "importFile": "/public/elements/chatm-app.html",
+  "dependencies" : [
+    "PolymerElements/iron-elements#~1.0.7",
+    "PolymerElements/paper-elements#~1.0.7"
+  ]
+}

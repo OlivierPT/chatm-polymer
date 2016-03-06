@@ -1,0 +1,59 @@
+
+
+<dom-module is="channels-list">
+  <template>
+
+    <meteor-collection name="Channels">
+      <meteor-query query='{}' enable="{{subready}}" data="{{datas}}" options='{}'></meteor-query>
+    </meteor-collection>
+
+    <!-- Drawer Content -->
+    <paper-menu>
+
+      <template is="dom-repeat" items="{{datas}}">
+        <a href="/channels/{{item._id}}">
+          <iron-icon icon="info"></iron-icon>
+          <span>{{item.label}}</span>
+        </a>
+      </template>
+
+    </paper-menu>
+
+    <form is="iron-form" id="form" method="post" on-submit=createChannel>
+      <paper-input label="New channel" value={{channelLabel}}></paper-input>
+    </form>
+
+
+  </paper-header-panel>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'channels-list',
+      properties: {
+        selected: {
+          type: Number,
+          value: 0
+        }
+      },
+      created: function() {
+        Meteor.subscribe("allchannels");
+      },
+      createChannel: function() {
+        console.log("create channel");
+        var newChannel = {};
+        // Find the text field via the React ref
+        newChannel.label = this.channelLabel.trim();
+
+        Meteor.call("addChannel", newChannel, function(error, result) {
+          if (error) {
+            console.log('Channel creation error - ', error);
+          }
+        });
+
+        // Clear form
+        this.channelLabel = "";
+      }
+    });
+  </script>
+</dom-module>
